@@ -1,0 +1,19 @@
+{
+  "name": "commanderJS",
+  "version": "0.0.1",
+  "description": "Commander-server's node.js version",
+  "bugs": {
+    "url": "https://github.com/alberto-morales/commanderJS/issues",
+    "email": "mail@albertomorales.eu"
+  },
+  "license": "LGPL-3.0",
+  "author": "Alberto Morales <mail@albertomorales.eu> - http://albertomorales.eu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alberto-morales/commanderJS"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.14.0"
+  }
+}
