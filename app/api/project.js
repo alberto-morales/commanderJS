@@ -2,21 +2,23 @@
 
 (function() {
 	
-	var Environment = require('./environment');
-	
 	function Project (id, description) {
 		var self = this;
 	
 		self.id = id;
 		self.description   = description;
-	
-		// $.extend(true, self, serverData);
+		self.environments = [];	
 	
 	};
 	
-	Project.prototype.escribe = function(){
+	Project.prototype.addEnvironment = function(newEnvironment){
 		var self = this;
-		console.log('Soy el project '+self.id+' con descripcion '+self.description);
+		self.environments.push(newEnvironment);
+	}
+	
+	Project.prototype.environments = function(){
+		var self = this;
+		return self.environments;
 	}
 	
 	module.exports = Project;
