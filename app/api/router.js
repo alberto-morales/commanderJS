@@ -6,7 +6,6 @@
 	var router = express.Router();
 	
 	var catalog = require('../model/catalog');
-	catalog.reload();
 	
 	// middleware that is specific to this router
 	router.use(function timeLog (req, res, next) {
@@ -14,34 +13,26 @@
 		if (catalog.isLoading) {
 			res.send('Catalog still loading!!!');
 		} else {
+			console.log(req.originalUrl);
 			next();
 		}
 	});
 	
-	// define the home page route
-	router.get('/', function (req, res) {
-		res.send('Hello world')
-	});
-	
-	// define the about route
-	router.get('/about', function (req, res) {
-		res.send('About me!');
-	});
-	
-	// define the servers route
-	router.get('/servers', function (req, res) {
-		res.send('hay '+catalog.serverDefs().length+' servers');
-	})	
-	
-	// define the environments route
-	router.get('/environments', function (req, res) {
-		res.send('hay '+catalog.environmentDefs().length+' environments');
-	})	
-	
-	// define the projects route
-	router.get('/projects', function (req, res) {
-		res.send('hay '+catalog.projectDefs().length+' projects');
-	})	
+	var apiController = require('./controller.js');
+	router.route('/catalogs/reload').get(apiController.reloadCatalogs);
+	router.route('/servers').get(apiController.getServers);
+	router.route('/servers/:id').get(apiController.getServer);
+	router.route('/servers/:id/status').get(apiController.getServerStatus);
+	router.route('/servers/:id/version').get(apiController.getServerVersion);
+	router.route('/servers/:id/start').get(apiController.startServer);
+	router.route('/servers/:id/stop').get(apiController.stopServer);
+	router.route('/environments').get(apiController.getEnvironments);
+	router.route('/environments/:id').get(apiController.getEnvironment);
+	router.route('/environments/:id/status').get(apiController.getEnvironmentStatus);
+	router.route('/environments/:id/schema').get(apiController.getEnvironmentSchema);
+	router.route('/environments/:id/start').get(apiController.startEnvironment);
+	router.route('/environments/:id/stop').get(apiController.stopEnvironment);
+	router.route('/projects').get(apiController.getProjects);
 	
 	module.exports = router;
 	
