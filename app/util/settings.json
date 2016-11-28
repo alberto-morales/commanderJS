@@ -1,0 +1,11 @@
+{
+  "port": 3001,
+  "console": {
+      "filename": "application.log",
+      "levellog": "debug" 
+  },
+  "jwt": {
+    "secret": "my-secret-word"
+  },
+  "config-file": "/vagrant/commander-config.json"
+}
