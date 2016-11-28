@@ -73,4 +73,6 @@
 		return self.tipo;
 	}
 
+	module.exports = Server;
+	
 })();

@@ -2,17 +2,111 @@
 
 (function() {
 	
-	var hashtable = require('node-hashtable');
-	var appSettings = require('../util/settings');
+	function Catalog () {
+		var self = this;
+		
+		self.allElements = require('node-hashtable');
+		
+		self.isLoading = false;
+	};
 	
-	var file = appSettings.config-file;
-	jsonfile.readFile(file, function(err, obj) {
-		console.log('los proyectos son '+obj.projects.length);
-		hashtable.set('uno', {value: '1'});
-		hashtable.set('dos', {value: '2'});
-		hashtable.set('tres', {value: '3'});
-	
-		console.log(hashtable.get('dos'));
-	})
+	Catalog.prototype.reload = function() {
+		
+		var self = this;
+		
+		self.isLoading = true;
+		
+		console.log('INICIO carga catálogo');
 
+		var configuration = require('../util/configuration');
+		console.log("ya hice el rekire de la configuration");
+		
+		configuration.reload(function () {
+			console.log("INI - p1.then de catalog.reload")
+
+			self.allElements.clear(function() {
+				for (var i = 0; i < configuration.serverDefinitions.length; i++) {
+					var serverDef = configuration.serverDefinitions[i];
+					self.allElements.set('%SRV%'+serverDef.id, serverDef);
+				}	
+				for (var i = 0; i < configuration.environmentDefinitions.length; i++) {
+					var environmentDef = configuration.environmentDefinitions[i];
+					self.allElements.set('%ENV%'+environmentDef.id, environmentDef);
+				}		
+				for (var i = 0; i < configuration.projectDefinitions.length; i++) {
+					var projectDef = configuration.projectDefinitions[i];
+					self.allElements.set('%PRJ%'+projectDef.id, projectDef);
+				}	
+			});
+			
+			console.log("FIN - p1.then de catalog.reload");
+			
+		});				
+
+		console.log('FINALIZO carga catálogo');		
+		
+		self.isLoading = false;
+	}
+
+	Catalog.prototype.serverDefs = function() {
+		var self = this;
+		var result = [];
+		var keys = self.allElements.indexes();
+		for (var i = 0; i < keys.length; i++) {
+			var key = keys[i];
+			if (key.substring(0,5) == '%SRV%') {
+				result.push(self.allElements.get(key));
+			}			
+		}
+		return result;
+	}
+	
+	Catalog.prototype.serverDefByID = function(id) {
+		var self = this;
+		
+		return self.allElements.get('%SRV%' + id);
+	}	
+
+	Catalog.prototype.environmentDefs = function() {
+		var self = this;
+		var result = [];
+		var keys = self.allElements.indexes();
+		for (var i = 0; i < keys.length; i++) {
+			var key = keys[i];
+			if (key.substring(0,5) == '%ENV%') {
+				result.push(self.allElements.get(key));
+			}			
+		}
+		return result;
+	}
+	
+	Catalog.prototype.environmentDefByID = function(id) {
+		var self = this;
+		
+		return self.allElements.get('%ENV%' + id);
+	}	
+
+	Catalog.prototype.projectDefs = function() {
+		var self = this;		
+		var result = [];
+		var keys = self.allElements.indexes();
+		for (var i = 0; i < keys.length; i++) {
+			var key = keys[i];
+			if (key.substring(0,5) == '%PRJ%') {
+				result.push(self.allElements.get(key));
+			}			
+		}
+		return result;
+	}
+	
+	Catalog.prototype.projectDefByID = function(id) {
+		var self = this;
+		
+		return self.allElements.get('%PRJ%'+id);
+	}	
+	
+	var catalog = new Catalog();
+	
+	module.exports = catalog;
+	
 })();
