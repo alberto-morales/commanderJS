@@ -23,7 +23,7 @@
 		console.log("getServers");
 		var serverDefs = catalog.serverDefs();
 		var result = serverBuilder.build(serverDefs);
-		res.json(result);
+		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'homeURL', 'tipo']));
 	}
 	
 	module.exports.getServer = function(req, res) {
@@ -31,7 +31,7 @@
 		var id = req.params.id;
 		var serverDef = catalog.serverDefByID(id);
 		var result = serverBuilder.build(serverDef);
-		res.json(result);
+		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'homeURL', 'tipo']));
 	}
 	
 	module.exports.getServerStatus = function(req, res) {
@@ -58,7 +58,7 @@
 		console.log("getEnvironments");
 		var environmentDefs = catalog.environmentDefs();
 		var result = environmentBuilder.build(environmentDefs);
-		res.json(result);
+		res.send(JSON.stringify(result,['id', 'description', 'color', 'homeURL', 'aliveURL', 'schemaScript', 'servers']));
 	}
 	
 	module.exports.getEnvironment = function(req, res) {
@@ -66,7 +66,7 @@
 		var id = req.params.id;
 		var environmentDef = catalog.environmentDefByID(id);
 		var result = environmentBuilder.build(environmentDef);
-		res.json(result);
+		res.send(JSON.stringify(result,['id', 'description', 'color', 'homeURL', 'aliveURL', 'schemaScript', 'servers']));
 	}
 	
 	module.exports.getEnvironmentStatus = function(req, res) {
@@ -92,7 +92,7 @@
 	module.exports.getProjects = function(req, res) {
 		var projectDefs = catalog.projectDefs();
 		var result = projectBuilder.build(projectDefs);
-		res.json(result);
+		res.send(JSON.stringify(result,['id', 'description', 'environments']));
 	}	
     
 })();

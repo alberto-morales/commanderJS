@@ -11,14 +11,17 @@
 	
 	};
 	
+	Object.defineProperty(Project.prototype, 'environments', {
+		enumerable: true,
+	    get: function() {
+			var self = this;
+	        return self._environments;
+	    }
+	});
+	
 	Project.prototype.addEnvironment = function(newEnvironmentID){
 		var self = this;
 		self._environments.push(newEnvironmentID);
-	}
-	
-	Project.prototype.environments = function(){
-		var self = this;
-		return self._environments;
 	}
 	
 	module.exports = Project;

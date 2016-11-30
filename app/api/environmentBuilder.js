@@ -11,10 +11,10 @@
 		var environmentVO = new Environment(environmentDef.id, 
 											environmentDef.description
 											);
-		environmentVO.color(environmentDef.color);
-		environmentVO.homeURL(environmentDef.homeURL);
-		environmentVO.aliveURL(environmentDef.aliveURL);
-		environmentVO.schemaScript(environmentDef.schemaScript);
+		environmentVO.color = environmentDef.color;
+		environmentVO.homeURL = environmentDef.homeURL;
+		environmentVO.aliveURL = environmentDef.aliveURL;
+		environmentVO.schemaScript = environmentDef.schemaScript;
 		
 		for (var j = 0; j < environmentDef.serverList.length; j++) {
 			var serverDef = environmentDef.serverList[j];

@@ -2,9 +2,9 @@
 
 (function() {
 	
-	function Environment (id, description) {
+	function Environment(id, description) {
 		var self = this;
-	
+		
 		self.id = id;
 		self.description = description;
 		self._color = '';
@@ -12,49 +12,67 @@
 		self._aliveURL = '';
 		self._schemaScript = '';
 		self._servers = [];
-	
-	};
-	
-	Environment.prototype.color = function(color) {
-		var self = this;
-		if (!(typeof color == 'undefined')) {
-		   self._color = color;
-		}
-		return self._color;
 	}
 	
-	Environment.prototype.homeURL = function(homeURL) {
-		var self = this;
-		if (!(typeof homeURL == 'undefined')) {
-		   self._homeURL = homeURL;
-		}
-		return self._homeURL;
-	}
+	Object.defineProperty(Environment.prototype, 'color', {
+		enumerable: true,
+	    get: function() {
+			var self = this;
+	        return self._color;
+	    },
+	    set: function(val) {
+			var self = this;
+			self._color = val;
+	    }
+	});
 	
-	Environment.prototype.aliveURL = function(aliveURL) {
-		var self = this;
-		if (!(typeof aliveURL == 'undefined')) {
-		   self._aliveURL = aliveURL;
-		}
-		return self._aliveURL;
-	}
+	Object.defineProperty(Environment.prototype, 'homeURL', {
+		enumerable: true,
+	    get: function() {
+			var self = this;
+	        return self._homeURL;
+	    },
+	    set: function(val) {
+			var self = this;
+			self._homeURL = val;
+	    }
+	});
 	
-	Environment.prototype.schemaScript = function(schemaScript) {
-		var self = this;
-		if (!(typeof schemaScript == 'undefined')) {
-		   self._schemaScript = schemaScript;
-		}
-		return self._schemaScript;
-	}
+	Object.defineProperty(Environment.prototype, 'aliveURL', {
+		enumerable: true,
+	    get: function() {
+			var self = this;
+	        return self._aliveURL;
+	    },
+	    set: function(val) {
+			var self = this;
+			self._aliveURL = val;
+	    }
+	});
+	
+	Object.defineProperty(Environment.prototype, 'schemaScript', {
+		enumerable: true,
+	    get: function() {
+			var self = this;
+	        return self._schemaScript;
+	    },
+	    set: function(val) {
+			var self = this;
+			self._schemaScript = val;
+	    }
+	});
+	
+	Object.defineProperty(Environment.prototype, 'servers', {
+		enumerable: true,
+	    get: function() {
+			var self = this;
+	        return self._servers;
+	    }
+	});
 	
 	Environment.prototype.addServer = function(newServerID){
 		var self = this;
 		self._servers.push(newServerID);
-	}
-	
-	Environment.prototype.servers = function() {
-		var self = this;
-		return self._servers;
 	}
 	
 	module.exports = Environment;
