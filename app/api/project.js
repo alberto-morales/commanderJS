@@ -6,19 +6,19 @@
 		var self = this;
 	
 		self.id = id;
-		self.description   = description;
-		self.environments = [];	
+		self.description = description;
+		self._environments = [];	
 	
 	};
 	
-	Project.prototype.addEnvironment = function(newEnvironment){
+	Project.prototype.addEnvironment = function(newEnvironmentID){
 		var self = this;
-		self.environments.push(newEnvironment);
+		self._environments.push(newEnvironmentID);
 	}
 	
 	Project.prototype.environments = function(){
 		var self = this;
-		return self.environments;
+		return self._environments;
 	}
 	
 	module.exports = Project;

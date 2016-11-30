@@ -7,70 +7,70 @@
 	
 		self.id = id;
 		self.description   = description;
-		self.address = '';
-		self.username = '';
-		self.password = '';
-		self.startScript = '';
-		self.stopScript = '';
-		self.homeURL = '';
-		self.tipo = '';	
+		self._address = '';
+		self._username = '';
+		self._password = '';
+		self._startScript = '';
+		self._stopScript = '';
+		self._homeURL = '';
+		self._tipo = '';	
 	
 	};
 	
 	Server.prototype.address = function(address){
 		var self = this;
 		if (!(typeof address == 'undefined')) {
-			self.address = address;
+			self._address = address;
 		}
-		return self.address;
+		return self._address;
 	}
 
 	Server.prototype.username = function(username){
 		var self = this;
 		if (!(typeof username == 'undefined')) {
-			self.username = username;
+			self._username = username;
 		}
-		return self.username;
+		return self._username;
 	}
 
 	Server.prototype.password = function(password){
 		var self = this;
 		if (!(typeof password == 'undefined')) {
-			self.password = password;
+			self._password = password;
 		}
-		return self.password;
+		return self._password;
 	}
 
 	Server.prototype.startScript = function(startScript){
 		var self = this;
 		if (!(typeof startScript == 'undefined')) {
-			self.startScript = startScript;
+			self._startScript = startScript;
 		}
-		return self.startScript;
+		return self._startScript;
 	}
 
 	Server.prototype.stopScript = function(stopScript){
 		var self = this;
 		if (!(typeof stopScript == 'undefined')) {
-			self.stopScript = stopScript;
+			self._stopScript = stopScript;
 		}
-		return self.stopScript;
+		return self._stopScript;
 	}
 
 	Server.prototype.homeURL = function(homeURL){
 		var self = this;
 		if (!(typeof homeURL == 'undefined')) {
-			self.homeURL = homeURL;
+			self._homeURL = homeURL;
 		}
-		return self.homeURL;
+		return self._homeURL;
 	}
 
 	Server.prototype.tipo = function(tipo){
 		var self = this;
 		if (!(typeof tipo == 'undefined')) {
-			self.tipo = tipo;
+			self._tipo = tipo;
 		}
-		return self.tipo;
+		return self._tipo;
 	}
 
 	module.exports = Server;
