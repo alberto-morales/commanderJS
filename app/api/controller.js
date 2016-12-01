@@ -23,7 +23,7 @@
 		console.log("getServers");
 		var serverDefs = catalog.serverDefs();
 		var result = serverBuilder.build(serverDefs);
-		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'homeURL', 'tipo']));
+		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'versionScript', 'homeURL', 'tipo']));
 	}
 	
 	module.exports.getServer = function(req, res) {
@@ -31,7 +31,7 @@
 		var id = req.params.id;
 		var serverDef = catalog.serverDefByID(id);
 		var result = serverBuilder.build(serverDef);
-		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'homeURL', 'tipo']));
+		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'versionScript', 'homeURL', 'tipo']));
 	}
 	
 	module.exports.getServerStatus = function(req, res) {

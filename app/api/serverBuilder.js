@@ -16,6 +16,7 @@
 		serverVO.password = serverDef.hostConfig.password;
 		serverVO.startScript = serverDef.startScript;
 		serverVO.stopScript = serverDef.stopScript;
+		serverVO.versionScript = serverDef.versionScript;
 		serverVO.homeURL = serverDef.homeURL;
 		serverVO.tipo = serverDef.tipo;
 		

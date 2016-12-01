@@ -12,6 +12,7 @@
 		self._password = '';
 		self._startScript = '';
 		self._stopScript = '';
+		self._versionScript = '';
 		self._homeURL = '';
 		self._tipo = '';	
 	
@@ -74,6 +75,18 @@
 	    set: function(val) {
 			var self = this;
 			self._stopScript = val;
+	    }
+	});
+	
+	Object.defineProperty(Server.prototype, 'versionScript', {
+		enumerable: true,
+	    get: function() {
+			var self = this;
+	        return self._versionScript;
+	    },
+	    set: function(val) {
+			var self = this;
+			self._versionScript = val;
 	    }
 	});
 	
