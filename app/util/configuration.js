@@ -38,7 +38,7 @@
 		
 		var fileName = appSettings.configFile;
 		
-		var configurationDef = loadJSONfile(fileName, 'latin1');	
+		var configurationDef = loadJSONfile(fileName, 'binary');	
 		
 		console.log('INICIO carga configuracion de '+configurationDef.projects.length+' projects');
 		
