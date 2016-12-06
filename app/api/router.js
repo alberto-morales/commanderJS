@@ -19,6 +19,7 @@
 	});
 	
 	var apiController = require('./controller.js');
+	router.route('/passwords/:plainPassword/encrypt').get(apiController.encryptPassword);
 	router.route('/catalogs/reload').get(apiController.reloadCatalogs);
 	router.route('/servers').get(apiController.getServers);
 	router.route('/servers/:id').get(apiController.getServer);

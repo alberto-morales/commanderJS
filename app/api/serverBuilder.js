@@ -23,14 +23,25 @@
 		serverVO.tipo = serverDef.tipo;
 		
 		if (resolveAsyncProperties) {
-			server.isAlive(function(isAlive) {
-				serverVO.isAlive = isAlive;
+//			server.isAlive(function(isAlive) {
+//				serverVO.isAlive = isAlive;
+//				if (typeof callbackFunction !== 'undefined') {
+//					callbackFunction(serverVO);	
+//				}
+//			});
+			server.version(function(strVersion) {
+				serverVO.version = strVersion;
 				if (typeof callbackFunction !== 'undefined') {
 					callbackFunction(serverVO);	
 				}
-			});
+			});			
+			
 		} else {
-			serverVO.aliveURL = serverDef.aliveURL;
+//			serverVO.aliveURL = serverDef.aliveURL;
+//			if (typeof callbackFunction !== 'undefined') {
+//				callbackFunction(serverVO);			
+//			}
+			serverVO.versionScript = serverDef.versionScript;
 			if (typeof callbackFunction !== 'undefined') {
 				callbackFunction(serverVO);			
 			}

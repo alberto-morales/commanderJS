@@ -11,6 +11,15 @@
 	var catalog = require('../model/catalog');
 	catalog.reload(); // <<== OJITO, está aki el catalog.reload!!!!
 	
+	var encDecrypter = require('../util/encDecrypter');
+
+	module.exports.encryptPassword = function(req, res) {
+		console.log("encryptPassword");
+		var plainPassword = req.params.plainPassword;
+		var encryptedPassword = encDecrypter.encrypt(plainPassword);
+		res.send(encryptedPassword);
+	}
+
 	module.exports.reloadCatalogs = function(req, res) {
 		console.log("reloadCatalogs");
 		catalog.reload();
@@ -51,19 +60,19 @@
 		var server = new Server(serverDef);
 		serverBuilder.build(server,
 					function(result) {
-					res.send(JSON.stringify(result,['id', 
-					                                'description', 
-					                                'address', 
-					                                'username', 
-					                                'startScript', 
-					                                'stopScript', 
-					                                'homeURL', 
-					                                'tipo',
-					                                'version', 
-					                                'isAlive']
-											)
-							);			
-				}
+						res.send(JSON.stringify(result,['id', 
+						                                'description', 
+						                                'address', 
+						                                'username', 
+						                                'startScript', 
+						                                'stopScript', 
+						                                'homeURL', 
+						                                'tipo',
+						                                'version', 
+						                                'isAlive']
+												)
+								);			
+					}
 			   );
 	}
 	
@@ -72,8 +81,8 @@
 		var id = req.params.id;
 		var serverDef = catalog.serverDefByID(id);
 		var server = new Server(serverDef);
-		server.isAlive(function(serverStatus) {
-			res.send(JSON.stringify(serverStatus));	
+		server.isAlive(function(isAlive) {
+			res.send(JSON.stringify(isAlive));	
 		});
 	}
 	
