@@ -2,7 +2,7 @@
 
 (function() {
 	
-	function Project (id, description) {
+	function ProjectVO (id, description) {
 		var self = this;
 	
 		self.id = id;
@@ -11,7 +11,7 @@
 	
 	};
 	
-	Object.defineProperty(Project.prototype, 'environments', {
+	Object.defineProperty(ProjectVO.prototype, 'environments', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -19,11 +19,11 @@
 	    }
 	});
 	
-	Project.prototype.addEnvironment = function(newEnvironmentID){
+	ProjectVO.prototype.addEnvironment = function(newEnvironmentID){
 		var self = this;
 		self._environments.push(newEnvironmentID);
 	}
 	
-	module.exports = Project;
+	module.exports = ProjectVO;
 	
 })();

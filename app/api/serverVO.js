@@ -2,7 +2,7 @@
 
 (function() {
 	
-	function Server (id, description) {
+	function ServerVO (id, description) {
 		var self = this;
 	
 		self.id = id;
@@ -18,7 +18,7 @@
 	
 	};
 	
-	Object.defineProperty(Server.prototype, 'address', {
+	Object.defineProperty(ServerVO.prototype, 'address', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -30,7 +30,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Server.prototype, 'username', {
+	Object.defineProperty(ServerVO.prototype, 'username', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -42,7 +42,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Server.prototype, 'password', {
+	Object.defineProperty(ServerVO.prototype, 'password', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -54,7 +54,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Server.prototype, 'startScript', {
+	Object.defineProperty(ServerVO.prototype, 'startScript', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -66,7 +66,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Server.prototype, 'stopScript', {
+	Object.defineProperty(ServerVO.prototype, 'stopScript', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -78,7 +78,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Server.prototype, 'versionScript', {
+	Object.defineProperty(ServerVO.prototype, 'versionScript', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -90,7 +90,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Server.prototype, 'homeURL', {
+	Object.defineProperty(ServerVO.prototype, 'homeURL', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -102,7 +102,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Server.prototype, 'tipo', {
+	Object.defineProperty(ServerVO.prototype, 'tipo', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -114,6 +114,6 @@
 	    }
 	});
 	
-	module.exports = Server;
+	module.exports = ServerVO;
 	
 })();

@@ -2,7 +2,7 @@
 
 (function() {
 	
-	function Environment(id, description) {
+	function EnvironmentVO(id, description) {
 		var self = this;
 		
 		self.id = id;
@@ -14,7 +14,7 @@
 		self._servers = [];
 	}
 	
-	Object.defineProperty(Environment.prototype, 'color', {
+	Object.defineProperty(EnvironmentVO.prototype, 'color', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -26,7 +26,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Environment.prototype, 'homeURL', {
+	Object.defineProperty(EnvironmentVO.prototype, 'homeURL', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -38,7 +38,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Environment.prototype, 'aliveURL', {
+	Object.defineProperty(EnvironmentVO.prototype, 'aliveURL', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -50,7 +50,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Environment.prototype, 'schemaScript', {
+	Object.defineProperty(EnvironmentVO.prototype, 'schemaScript', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -62,7 +62,7 @@
 	    }
 	});
 	
-	Object.defineProperty(Environment.prototype, 'servers', {
+	Object.defineProperty(EnvironmentVO.prototype, 'servers', {
 		enumerable: true,
 	    get: function() {
 			var self = this;
@@ -70,11 +70,11 @@
 	    }
 	});
 	
-	Environment.prototype.addServer = function(newServerID){
+	EnvironmentVO.prototype.addServer = function(newServerID){
 		var self = this;
 		self._servers.push(newServerID);
 	}
 	
-	module.exports = Environment;
+	module.exports = EnvironmentVO;
 
 })();

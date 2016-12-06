@@ -15,7 +15,7 @@ conn.on('ready', function() {
     stream.end('cd /vagrant/jboss-eap-6.3/bin\n./run.sh\nexit\n');
   });
 }).connect({
-  host: '192.168.1.132',
+  host: '192.168.1.135',
   port: 22,
   username: 'tucho',
   password: 'tuputamadre'

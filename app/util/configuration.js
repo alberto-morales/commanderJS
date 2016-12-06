@@ -7,7 +7,7 @@
 	function loadJSONfile (filename, encoding) {
 		try {
 			// default encoding is utf8
-			if (typeof (encoding) == 'undefined') encoding = 'utf8';
+			if (typeof encoding === 'undefined') encoding = 'utf8';
 			
 			// read file synchroneously
 			var contents = fs.readFileSync(filename, encoding);				
@@ -57,7 +57,7 @@
 		
 		console.log('FINALIZO carga configuracion, y voy a llamar a la callbackFunction');
 		
-		if (typeof callbackFunction != undefined) {
+		if (typeof callbackFunction !== 'undefined') {
 			callbackFunction();
 		}
 		

@@ -6,11 +6,13 @@
 	var toType = function(obj) {
 	  return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase();
 	}
-	var Server = require('./server');
-	var entityToVO = function(serverDef) {
-		var serverVO = new Server(serverDef.id, 
-									   serverDef.description
-								);
+	var ServerVO = require('./serverVO');
+
+	var entityToVO = function(server, resolveAsyncProperties, callbackFunction) {
+		var serverDef = server.serverDef;
+		var serverVO = new ServerVO(serverDef.id, 
+									serverDef.description
+								   );
 		serverVO.address = serverDef.hostConfig.address;
 		serverVO.username = serverDef.hostConfig.username;
 		serverVO.password = serverDef.hostConfig.password;
@@ -20,7 +22,20 @@
 		serverVO.homeURL = serverDef.homeURL;
 		serverVO.tipo = serverDef.tipo;
 		
-		return serverVO;
+		if (resolveAsyncProperties) {
+			server.isAlive(function(isAlive) {
+				serverVO.isAlive = isAlive;
+				if (typeof callbackFunction !== 'undefined') {
+					callbackFunction(serverVO);	
+				}
+			});
+		} else {
+			serverVO.aliveURL = serverDef.aliveURL;
+			if (typeof callbackFunction !== 'undefined') {
+				callbackFunction(serverVO);			
+			}
+		} 
+		
 	}
 	
 	function ServerBuilder () {
@@ -28,24 +43,24 @@
 
 	};
 		
-	ServerBuilder.prototype.build = function(arg) {
+	ServerBuilder.prototype.build = function(arg, callbackFunction) {
 		
 		var self = this;
-		
-		var Server = require('./server');
 		
 		if (toType(arg) == 'array') {
 			var result = [];
 			for (var i = 0; i < arg.length; i++) {
-				var serverDef = arg[i];
-				var serverVO = entityToVO(serverDef);
-				result.push(serverVO);
+				var server = arg[i];
+				entityToVO(server, false, function(serverVO) {
+					result.push(serverVO);
+				});
 			}
-			return result;
+			if (typeof callbackFunction !== 'undefined') {
+				callbackFunction(result);
+			}
 		} else {
-			var serverDef = arg;
-			var serverVO = entityToVO(serverDef);
-			return serverVO;
+			var server = arg;
+			entityToVO(server, true, callbackFunction);
 		}
 	}	
 	

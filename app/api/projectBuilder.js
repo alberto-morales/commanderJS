@@ -6,11 +6,11 @@
 	var toType = function(obj) {
 	  return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase();
 	}
-	var Project = require('./project');
+	var Project = require('./projectVO');
 	var entityToVO = function(projectDef) {
-		var projectVO = new Project(projectDef.id, 
-									projectDef.description
-									);
+		var projectVO = new ProjectVO(projectDef.id, 
+									  projectDef.description
+									  );
 		for (var j = 0; j < projectDef.environmentList.length; j++) {
 			var environmentDef = projectDef.environmentList[j];
 			projectVO.addEnvironment(environmentDef.id);

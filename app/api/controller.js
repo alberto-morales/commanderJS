@@ -6,9 +6,7 @@
 	var environmentBuilder = require('./environmentBuilder');
 	var projectBuilder = require('./projectBuilder');
 	
-	// module.exports.Project = Project;
-	// module.exports.Environment = Environment;
-	// module.exports.Server = Server;
+	var Server = require('../model/server');
 	
 	var catalog = require('../model/catalog');
 	catalog.reload(); // <<== OJITO, está aki el catalog.reload!!!!
@@ -22,21 +20,61 @@
 	module.exports.getServers = function(req, res) {
 		console.log("getServers");
 		var serverDefs = catalog.serverDefs();
-		var result = serverBuilder.build(serverDefs);
-		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'versionScript', 'homeURL', 'tipo']));
+		var servers = [];
+		for (var i = 0; i < serverDefs.length; i++) {
+			var serverDef = serverDefs[i];
+			var server = new Server(serverDef);
+			servers.push(server);
+		}
+		serverBuilder.build(servers,
+							function(result) {
+								res.send(JSON.stringify(result,['id', 
+								                                'description', 
+								                                'address', 
+								                                'username', 
+								                                'startScript', 
+								                                'stopScript',
+								                                'homeURL', 
+								                                'tipo',
+								                                'versionScript',
+								                                'aliveURL']
+														)
+										);			
+							}
+						   );
 	}
 	
 	module.exports.getServer = function(req, res) {
 		console.log("getServer");
 		var id = req.params.id;
 		var serverDef = catalog.serverDefByID(id);
-		var result = serverBuilder.build(serverDef);
-		res.send(JSON.stringify(result,['id', 'description', 'address', 'username', 'password', 'startScript', 'stopScript', 'versionScript', 'homeURL', 'tipo']));
+		var server = new Server(serverDef);
+		serverBuilder.build(server,
+					function(result) {
+					res.send(JSON.stringify(result,['id', 
+					                                'description', 
+					                                'address', 
+					                                'username', 
+					                                'startScript', 
+					                                'stopScript', 
+					                                'homeURL', 
+					                                'tipo',
+					                                'version', 
+					                                'isAlive']
+											)
+							);			
+				}
+			   );
 	}
 	
 	module.exports.getServerStatus = function(req, res) {
 		console.log("getServerStatus");
-		res.send("getServerStatus");
+		var id = req.params.id;
+		var serverDef = catalog.serverDefByID(id);
+		var server = new Server(serverDef);
+		server.isAlive(function(serverStatus) {
+			res.send(JSON.stringify(serverStatus));	
+		});
 	}
 	
 	module.exports.getServerVersion = function(req, res) {
