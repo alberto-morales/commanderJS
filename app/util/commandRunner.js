@@ -31,7 +31,6 @@
 	        }
 	        if (typeof stdout === 'object') {
 		        stdout.on('data', function(data) {
-		            console.log(''+data);
 		            strOutput += ''+data;
 		        });
 		        stdout.on('close',function() {

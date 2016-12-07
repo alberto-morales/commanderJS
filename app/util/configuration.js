@@ -32,15 +32,11 @@
 	Configuration.prototype.reload = function(callbackFunction) {
 		var self = this;
 		
-		console.log("entro en el configuration.reload");
-		
 		var appSettings = require('./settings');
 		
 		var fileName = appSettings.configFile;
 		
 		var configurationDef = loadJSONfile(fileName, 'binary');	
-		
-		console.log('INICIO carga configuracion de '+configurationDef.projects.length+' projects');
 		
 		for (var i = 0; i < configurationDef.projects.length; i++) {
 			var projectDef = configurationDef.projects[i];
@@ -55,13 +51,9 @@
 			}
 		}
 		
-		console.log('FINALIZO carga configuracion, y voy a llamar a la callbackFunction');
-		
 		if (typeof callbackFunction !== 'undefined') {
 			callbackFunction();
 		}
-		
-		console.log("me salgo del configuration.reload");
 	}
 
 	module.exports = new Configuration();

@@ -7,6 +7,7 @@
 	  return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase();
 	}
 	var ServerVO = require('./serverVO');
+	var async = require('async')
 
 	var entityToVO = function(server, resolveAsyncProperties, callbackFunction) {
 		var serverDef = server.serverDef;
@@ -29,18 +30,35 @@
 //					callbackFunction(serverVO);	
 //				}
 //			});
-			server.version(function(strVersion) {
+//			server.version(function(strVersion) {
+//				serverVO.version = strVersion;
+//				if (typeof callbackFunction !== 'undefined') {
+//					callbackFunction(serverVO);	
+//				}
+//			});				
+			async.parallel({
+			    callAlive: function(callback) {
+					server.isAlive(function(isAlive) {
+						callback(null, isAlive);
+					});
+			    },
+			    callVersion: function(callback) {
+					server.version(function(strVersion) {
+						callback(null, strVersion);
+					});	
+			    }
+			}, function(err, results) {
+				var isAlive = results.callAlive;
+				serverVO.isAlive = isAlive;
+				var strVersion = results.callVersion;
 				serverVO.version = strVersion;
 				if (typeof callbackFunction !== 'undefined') {
 					callbackFunction(serverVO);	
-				}
-			});			
+				}			
+			})
 			
 		} else {
-//			serverVO.aliveURL = serverDef.aliveURL;
-//			if (typeof callbackFunction !== 'undefined') {
-//				callbackFunction(serverVO);			
-//			}
+			serverVO.aliveURL = serverDef.aliveURL;
 			serverVO.versionScript = serverDef.versionScript;
 			if (typeof callbackFunction !== 'undefined') {
 				callbackFunction(serverVO);			

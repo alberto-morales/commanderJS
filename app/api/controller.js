@@ -88,7 +88,12 @@
 	
 	module.exports.getServerVersion = function(req, res) {
 		console.log("getServerVersion");
-		res.send("getServerVersion");
+		var id = req.params.id;
+		var serverDef = catalog.serverDefByID(id);
+		var server = new Server(serverDef);
+		server.version(function(version) {
+			res.send(version);	
+		});
 	}
 	
 	module.exports.startServer = function(req, res) {

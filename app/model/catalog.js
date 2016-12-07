@@ -16,13 +16,9 @@
 		
 		self.isLoading = true;
 		
-		console.log('INICIO carga catálogo');
-
 		var configuration = require('../util/configuration');
-		console.log("ya hice el rekire de la configuration");
 		
 		configuration.reload(function () {
-			console.log("INI - p1.then de catalog.reload")
 
 			self.allElements.clear(function() {
 				for (var i = 0; i < configuration.serverDefinitions.length; i++) {
@@ -39,12 +35,8 @@
 				}	
 			});
 			
-			console.log("FIN - p1.then de catalog.reload");
-			
 		});				
 
-		console.log('FINALIZO carga catálogo');		
-		
 		self.isLoading = false;
 	}
 
