@@ -7,6 +7,7 @@
 	var projectBuilder = require('./projectBuilder');
 	
 	var Server = require('../model/server');
+	var Environment = require('../model/environment');
 	
 	var catalog = require('../model/catalog');
 	catalog.reload(); // <<== OJITO, está aki el catalog.reload!!!!
@@ -98,12 +99,12 @@
 	
 	module.exports.startServer = function(req, res) {
 		console.log("startServer");
-		res.send("startServer");
+		res.send("server :-) started");
 	}
 	
 	module.exports.stopServer = function(req, res) {
 		console.log("stopServer");
-		res.send("stopServer");
+		res.send("server :-) stopped");
 	}
 	
 	module.exports.getEnvironments = function(req, res) {
@@ -123,22 +124,32 @@
 	
 	module.exports.getEnvironmentStatus = function(req, res) {
 		console.log("getEnvironmentStatus");
-		res.send("getEnvironmentStatus");
+		var id = req.params.id;
+		var environmentDef = catalog.environmentDefByID(id);
+		var environment = new Environment(environmentDef);
+		environment.isAlive(function(isAlive) {
+			res.send(JSON.stringify(isAlive));	
+		});
 	}
 	
 	module.exports.getEnvironmentSchema = function(req, res) {
 		console.log("getEnvironmentSchema");
-		res.send("getEnvironmentSchema");
+		var id = req.params.id;
+		var environmentDef = catalog.environmentDefByID(id);
+		var environment = new Environment(environmentDef);
+		environment.schema(function(schema) {
+			res.send(schema);	
+		});
 	}
 	
 	module.exports.startEnvironment = function(req, res) {
 		console.log("startEnvironment");
-		res.send("startEnvironment");
+		res.send("environment :-) started");
 	}
 	
 	module.exports.stopEnvironment = function(req, res) {
 		console.log("stopEnvironment");
-		res.send("stopEnvironment");
+		res.send("environment :-) stopped");
 	}
 	
 	module.exports.getProjects = function(req, res) {

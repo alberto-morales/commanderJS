@@ -6,7 +6,7 @@
 	var toType = function(obj) {
 	  return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase();
 	}
-	var Environment = require('./environmentVO');
+	var EnvironmentVO = require('./environmentVO');
 	var entityToVO = function(environmentDef) {
 		var environmentVO = new EnvironmentVO(environmentDef.id, 
 											  environmentDef.description
