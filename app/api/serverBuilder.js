@@ -9,6 +9,7 @@
 	var ServerVO = require('./serverVO');
 	var async = require('async')
 
+	// esto pierde por todos lados, Server.serverDef viola la encapsulacion tremendamente?
 	var entityToVO = function(server, resolveAsyncProperties, callbackFunction) {
 		var serverDef = server.serverDef;
 		var serverVO = new ServerVO(serverDef.id, 
@@ -25,7 +26,7 @@
 		
 		if (resolveAsyncProperties) {
 //			server.isAlive(function(isAlive) {
-//				serverVO.isAlive = isAlive;
+//				serverVO.alive = isAlive;
 //				if (typeof callbackFunction !== 'undefined') {
 //					callbackFunction(serverVO);	
 //				}
@@ -49,7 +50,7 @@
 			    }
 			}, function(err, results) {
 				var isAlive = results.callAlive;
-				serverVO.isAlive = isAlive;
+				serverVO.alive = isAlive;
 				var strVersion = results.callVersion;
 				serverVO.version = strVersion;
 				if (typeof callbackFunction !== 'undefined') {

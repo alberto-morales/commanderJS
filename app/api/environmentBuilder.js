@@ -18,7 +18,7 @@
 		
 		for (var j = 0; j < environmentDef.serverList.length; j++) {
 			var serverDef = environmentDef.serverList[j];
-			environmentVO.addServer(serverDef.id);
+			environmentVO.addServer(serverDef);
 		}
 		
 		return environmentVO;

@@ -23,13 +23,18 @@
 	    	
 	        if(err) console.log(err);
 
-	        if (typeof stderr === 'object') {
-		        stderr.on('data', function(data) {
-		            console.log('(ERR)'+data);
-		            strOutput += '(ERR)'+data;
-		        });
+	        if (stderr != null) {
+		        if (typeof stderr === 'object') {
+			        stderr.on('data', function(data) {
+			            console.log('(ERR) '+data);
+			            strOutput += '(ERR) '+data;
+			        });
+		        } else if (typeof stderr === 'string') {
+			        strOutput += '(ERR) '+err;
+					callbackFunction(strOutput);			
+		        }
 	        }
-	        if (typeof stdout === 'object') {
+		    if (typeof stdout === 'object' && stdout != null) {
 		        stdout.on('data', function(data) {
 		            strOutput += ''+data;
 		        });

@@ -29,19 +29,25 @@
 		
 		var serverDef = self.serverDef;
 		
-		commandRunner.run(serverDef.versionScript,
-				{
-					"host" : serverDef.hostConfig.address, 
-					"port" : serverDef.hostConfig.SSHPort, 
-					"username" : serverDef.hostConfig.username, 
-					"password" : serverDef.hostConfig.password
-				},
-				function(commandOutput) {
-					if (typeof callbackFunction !== 'undefined') {
-						callbackFunction(commandOutput);
-					}	
-				}
-		);
+//		if ("hcis" === serverDef.tipo) {
+			commandRunner.run(serverDef.versionScript,
+					{
+						"host" : serverDef.hostConfig.address, 
+						"port" : serverDef.hostConfig.SSHPort, 
+						"username" : serverDef.hostConfig.username, 
+						"password" : serverDef.hostConfig.password
+					},
+					function(commandOutput) {
+						if (typeof callbackFunction !== 'undefined') {
+							callbackFunction(commandOutput);
+						}	
+					}
+			);
+//		} else {
+//			if (typeof callbackFunction !== 'undefined') {
+//				callbackFunction('?');
+//			}	
+//		}
 	}
 	
 	module.exports = Server;

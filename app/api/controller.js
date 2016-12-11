@@ -70,7 +70,7 @@
 						                                'homeURL', 
 						                                'tipo',
 						                                'version', 
-						                                'isAlive']
+						                                'alive']
 												)
 								);			
 					}
@@ -111,7 +111,14 @@
 		console.log("getEnvironments");
 		var environmentDefs = catalog.environmentDefs();
 		var result = environmentBuilder.build(environmentDefs);
-		res.send(JSON.stringify(result,['id', 'description', 'color', 'homeURL', 'aliveURL', 'schemaScript', 'servers']));
+		res.send(JSON.stringify(result,['id', 'description', 'color', 'homeURL', 'aliveURL', 'schemaScript', 'servers',
+		                                'address', 
+		                                'username', 
+		                                'startScript', 
+		                                'stopScript', 
+		                                'tipo',
+		                                'version', 
+		                                'alive']));
 	}
 	
 	module.exports.getEnvironment = function(req, res) {
@@ -119,7 +126,14 @@
 		var id = req.params.id;
 		var environmentDef = catalog.environmentDefByID(id);
 		var result = environmentBuilder.build(environmentDef);
-		res.send(JSON.stringify(result,['id', 'description', 'color', 'homeURL', 'aliveURL', 'schemaScript', 'servers']));
+		res.send(JSON.stringify(result,['id', 'description', 'color', 'homeURL', 'aliveURL', 'schemaScript', 'servers',
+		                                'address', 
+		                                'username', 
+		                                'startScript', 
+		                                'stopScript', 
+		                                'tipo',
+		                                'version', 
+		                                'alive']));
 	}
 	
 	module.exports.getEnvironmentStatus = function(req, res) {

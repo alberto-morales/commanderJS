@@ -6,7 +6,7 @@
 	var toType = function(obj) {
 	  return ({}).toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase();
 	}
-	var Project = require('./projectVO');
+	var ProjectVO = require('./projectVO');
 	var entityToVO = function(projectDef) {
 		var projectVO = new ProjectVO(projectDef.id, 
 									  projectDef.description

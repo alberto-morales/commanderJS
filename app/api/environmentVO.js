@@ -70,9 +70,9 @@
 	    }
 	});
 	
-	EnvironmentVO.prototype.addServer = function(newServerID){
+	EnvironmentVO.prototype.addServer = function(newServerDef){
 		var self = this;
-		self._servers.push(newServerID);
+		self._servers.push(newServerDef);
 	}
 	
 	module.exports = EnvironmentVO;
