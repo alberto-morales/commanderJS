@@ -18,6 +18,7 @@
 		
 		for (var j = 0; j < environmentDef.serverList.length; j++) {
 			var serverDef = environmentDef.serverList[j];
+			serverDef.address = serverDef.hostConfig.address;
 			environmentVO.addServer(serverDef);
 		}
 		
