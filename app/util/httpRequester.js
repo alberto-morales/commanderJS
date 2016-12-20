@@ -2,8 +2,7 @@
 
 (function() {
 
-	var http = require('http');
-	var https = require('https');
+	var request = require('request');
 	
 	function HTTPRequester () {
 		var self = this;
@@ -11,19 +10,15 @@
 	};
 	
 	HTTPRequester.prototype.getResponseCode = function(URL, callbackFunction) {
-		if (URL.toUpperCase().startsWith('HTTPS')) {
-			https.get(URL, function (res) {
-				if (typeof callbackFunction !== 'undefined') {
-					callbackFunction(res.statusCode);
-				}			
-			});			
-		} else {
-			http.get(URL, function (res) {
-				if (typeof callbackFunction !== 'undefined') {
-					callbackFunction(res.statusCode);
-				}			
-			});			
-		}
+		request(URL, function(error, response, body) {
+			var statusCode = 404;
+			if (error == null && response != null) {
+				statusCode = response.statusCode;
+			}
+			if (typeof callbackFunction !== 'undefined') {
+				callbackFunction(statusCode);
+			}						
+		});
 	}
 	
 	module.exports = new HTTPRequester();
