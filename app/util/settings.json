@@ -7,5 +7,6 @@
   "jwt": {
     "secret": "my-secret-word"
   },
-  "configFile": "/vagrant/commander-config.json"
+  "configFile": "/vagrant/commander-config.json",
+  "timeoutValue" : 3000
 }
