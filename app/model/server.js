@@ -2,6 +2,7 @@
 
 (function() {
 	
+	var appSettings = require('../util/settings');
 	var requester = require('../util/httpRequester');
 	var commandRunner = require('../util/commandRunner');
 	
@@ -35,7 +36,8 @@
 						"host" : serverDef.hostConfig.address, 
 						"port" : serverDef.hostConfig.SSHPort, 
 						"username" : serverDef.hostConfig.username, 
-						"password" : serverDef.hostConfig.password
+						"password" : serverDef.hostConfig.password,
+						"readyTimeout" : appSettings.timeoutValue
 					},
 					function(commandOutput) {
 						if (typeof callbackFunction !== 'undefined') {
