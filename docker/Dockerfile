@@ -17,8 +17,8 @@ RUN touch doclone.morales4dev
 
 RUN git clone https://github.com/alberto-morales/commanderJS.git
 
-ADD commander/commander-config.json /home/commander/
-COPY commander/settings.json /home/commander/commanderJS/app/util/
+ADD commander-config.json /home/commander/
+COPY settings.json /home/commander/commanderJS/app/util/
 
 WORKDIR /home/commander/commanderJS
 RUN npm install -y
