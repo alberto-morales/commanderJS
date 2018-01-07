@@ -1,0 +1,143 @@
+{
+  "projects": [
+    {
+      "id": "AE_ES",
+      "description": "Animal Extra Spain",
+      "homeURL": "",
+      "environmentList": [
+        {
+          "id": "AE_ES-DEV",
+          "description": "Animal Extra Spain Development",
+          "color": "58ACFA",
+          "homeURL": "https://dev.animalextra.madrid.org/shop",
+          "aliveURL": "https://dev.animalextra.madrid.org/shop/alive",
+          "schemaScript": "/opt/schema.sh",
+          "serverList": [
+            {
+              "id": "AE_ES-DEV_01",
+              "description": "Nodo 1 - Desarrollo",
+              "startScript": "/opt/start.sh",
+              "stopScript": "/opt/stop.sh",
+              "deployScript": "/opt/deploy.sh",
+              "aliveURL": "http://172.24.10.1:8081/shop/alive",
+              "versionScript": "/opt/version.sh",
+              "homeURL": "http://172.24.10.1:8081/shop/",
+              "tipo": "shop",
+              "hostConfig": {
+                "address": "172.24.10.1",
+                "SSHPort": 22,
+                "username": "admin",
+                "password": "administrator"
+              }
+            },
+            {
+              "id": "AE_ES-DEV_02",
+              "description": "Nodo 2 - Desarrollo",
+              "startScript": "/opt/start.sh",
+              "stopScript": "/opt/stop.sh",
+              "deployScript": "/opt/deploy.sh",
+              "aliveURL": "http://172.24.10.2:8081/shop/alive",
+              "versionScript": "/opt/version.sh",
+              "homeURL": "http://172.24.10.2:8081/shop/",
+              "tipo": "shop",
+              "hostConfig": {
+                "address": "172.24.10.2",
+                "SSHPort": 22,
+                "username": "admin",
+                "password": "administrator"
+              }
+            }
+          ]
+        },
+        {
+          "id": "AE_ES-PRO",
+          "description": "Animal Extra Spain Production",
+          "color": "58ACFA",
+          "homeURL": "https://pro.animalextra.madrid.org/shop",
+          "aliveURL": "https://pro.animalextra.madrid.org/shop/alive",
+          "schemaScript": "/opt/schema.sh",
+          "serverList": [
+            {
+              "id": "AE_ES-PRO_01",
+              "description": "Nodo 1 - Production",
+              "startScript": "/opt/start.sh",
+              "stopScript": "/opt/stop.sh",
+              "deployScript": "/opt/deploy.sh",
+              "aliveURL": "http://172.24.20.1:8081/shop/alive",
+              "versionScript": "/opt/version.sh",
+              "homeURL": "http://172.24.20.1:8081/shop/",
+              "tipo": "shop",
+              "hostConfig": {
+                "address": "172.24.20.1",
+                "SSHPort": 22,
+                "username": "admin",
+                "password": "administrator"
+              }
+            },
+            {
+              "id": "AE_ES-PRO_02",
+              "description": "Nodo 1 - Production",
+              "startScript": "/opt/start.sh",
+              "stopScript": "/opt/stop.sh",
+              "deployScript": "/opt/deploy.sh",
+              "aliveURL": "http://172.24.20.2:8081/shop/alive",
+              "versionScript": "/opt/version.sh",
+              "homeURL": "http://172.24.20.2:8081/shop/",
+              "tipo": "shop",
+              "hostConfig": {
+                "address": "172.24.20.2",
+                "SSHPort": 22,
+                "username": "admin",
+                "password": "administrator"
+              }
+            }
+          ]
+        },
+        {
+          "id": "AE_ES-STA",
+          "description": "Animal Extra Spain Staging",
+          "color": "58ACFA",
+          "homeURL": "https://sta.animalextra.madrid.org/shop",
+          "aliveURL": "https://sta.animalextra.madrid.org/shop/alive",
+          "schemaScript": "/opt/schema.sh",
+          "serverList": [
+            {
+              "id": "AE_ES-STA_01",
+              "description": "Nodo 1 - Staging",
+              "startScript": "/opt/start.sh",
+              "stopScript": "/opt/stop.sh",
+              "deployScript": "/opt/deploy.sh",
+              "aliveURL": "http://172.24.30.1:8081/shop/alive",
+              "versionScript": "/opt/version.sh",
+              "homeURL": "http://172.24.30.1:8081/shop/",
+              "tipo": "shop",
+              "hostConfig": {
+                "address": "172.24.30.1",
+                "SSHPort": 22,
+                "username": "admin",
+                "password": "administrator"
+              }
+            },
+            {
+              "id": "AE_ES-STA_02",
+              "description": "Nodo 1 - Staging",
+              "startScript": "/opt/start.sh",
+              "stopScript": "/opt/stop.sh",
+              "deployScript": "/opt/deploy.sh",
+              "aliveURL": "http://172.24.30.2:8082/shop/alive",
+              "versionScript": "/opt/version.sh",
+              "homeURL": "http://172.24.30.2:8082/shop/",
+              "tipo": "shop",
+              "hostConfig": {
+                "address": "172.24.30.2",
+                "SSHPort": 22,
+                "username": "admin",
+                "password": "administrator"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
